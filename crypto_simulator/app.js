@@ -1,11 +1,33 @@
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
-//const mongoose = require('mongoose');
+
+const app = express();
+
+//Create SQlite database connection
+const sqlite = require('sqlite3').verbose();
+let db = new sqlite.Database(':memory:', (err) => {
+    if(err){
+        return console.error(err.message);
+    }
+});
+
+//Create database tables
+db.serialize(()=>{
+    db.run("CREATE TABLE user_info_basic (first_name TEXT NOT NULL, middle_name TEXT, last_name TEXT NOT NULL, email TEXT NOT NULL PRIMARY KEY, password TEXT NOT NULL, phone_number TEXT, dob TEXT)");
+    db.run("CREATE TABLE user_info_trading (balance REAL NOT NULL, email TEXT NOT NULL PRIMARY KEY)");
+});
+
+//Close the database connection
+db.close((err=>{
+    if(err){
+        return console.error(err.message);
+    }
+}));
 //const passport = require('passport');
 //const flash = require('connect-flash');
 //const session = require('express-session');
 
-const app = express();
+
 
 // Passport Config
 //require('./config/passport')(passport);
@@ -27,7 +49,7 @@ app.use(expressLayouts);
 app.set('view engine', 'ejs');
 
 // Express body parser
-// app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 
 // Express session
 // app.use(
