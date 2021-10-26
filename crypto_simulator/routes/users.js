@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const passport = require('passport');
 const bcrypt = require('bcryptjs');
 var fs = require('fs');
 
@@ -22,6 +23,8 @@ router.get('/login', (req, res) => res.render('login'));
 
 // Register Page
 router.get('/register', (req, res) => res.render('register'));
+
+
 
 //Handle registration
 router.post('/register', (req,res) => {
