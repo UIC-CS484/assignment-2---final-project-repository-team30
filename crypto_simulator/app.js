@@ -5,6 +5,7 @@ const passport = require('passport');
 var path = require('path');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
+var flash = require('connect-flash');
 
 const app = express();
 
@@ -38,6 +39,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use(flash());
+
+app.use(function(req, res, next) {
+    res.locals.error = req.flash('error');
+    next();
+  });
+
 //Routes
 app.use('/', require('./routes/index'));
 app.use('/users', require('./routes/users')); //Encapsulates register and login
@@ -59,6 +67,11 @@ app.use(function(req, res, next) {
 //   next();
 // });
 
+// app.use(flash());
+
+
+
+
 // error handler
 app.use(function(err, req, res, next) {
     // set locals, only providing error in development
@@ -68,7 +81,9 @@ app.use(function(err, req, res, next) {
     // render the error page
     res.status(err.status || 500);
     res.render('error');
-  });
+});
+
+
 
 
 //Set up port

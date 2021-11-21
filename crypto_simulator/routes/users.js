@@ -2,20 +2,8 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 const bcrypt = require('bcryptjs');
-var fs = require('fs');
-
-//const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
-//Create SQlite database connection
-/*
-const sqlite = require('sqlite3').verbose();
-let db = new sqlite.Database(':memory:', (err) => {
-    if(err){
-        return console.error(err.message);
-    }
-    console.log('Connected to the cached SQlite database.');
-});
-*/
-
+const db = require('../database/dbFunctions');
+const e = require('express');
 
 
 // Login Page
@@ -25,9 +13,8 @@ router.get('/login', (req, res) => res.render('login'));
 router.get('/register', (req, res) => res.render('register'));
 
 
-
 //Handle registration
-router.post('/register', (req,res) => {
+router.post('/register', async (req,res) => {
     const{ first_name, middle_name, last_name, email, password, password2} = req.body;
     let errors = [];
 
@@ -61,7 +48,12 @@ router.post('/register', (req,res) => {
     {
         errors.push({msg: 'Password should contain at least one capital letter.'})
     }
-
+    let someval = await db.verifyUser(email);
+    if(someval != undefined)
+    {
+        errors.push({msg: 'Email is already registered.'});
+    }
+     
     //Check if registration form should be sent or reloaded
     if(errors.length > 0)
     {
@@ -70,67 +62,32 @@ router.post('/register', (req,res) => {
         });
     }
     else{
-        //Dashboard
+
+        //Get date joined
         var today = new Date();
-        var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-        var anObject = {
-            "date": date
+        var date_joined = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+
+        try
+        {
+            await db.createUser(first_name, last_name, middle_name, email, password, date_joined);
+            res.render('registerLanding',{first_name : first_name});
         }
-
-        'use strict';
-        var randomValue = Math.random() * 123;
-        let users = [{ 
-            id: randomValue,
-            first_name: first_name,
-            middle_name: middle_name,
-            last_name: last_name, 
-            email: email,
-            password: password,
-            date_joined: date
-        }];
-
-        let data = JSON.stringify(users);
-        fs.writeFileSync('users.json', data);
-
-        res.render('registerLanding',{first_name : first_name});
-        
-        /*
-        db.serialize(()=>{
-            let found = false;
-            db.each(`SELECT email FROM user_info_basic WHERE email = ${email}`,(err,row) => {
-                if(err){
-                    return console.error(err.message);
-                }
-                if (row.email == email)
-                {
-                    found = true;
-                }
+        catch(error)
+        {
+            console.log(error);
+            errors.push({msg: 'Failed to complete registration.'});
+            res.render('register',{
+                errors, first_name, middle_name, last_name, email, password, password2
             });
-            if (found == true)
-            {
-                errors.push({ msg: 'Email is already registered'});
-                res.render('register',{
-                    errors, first_name, middle_name, last_name, email, password, password2
-                });
-            }
-            else {
-                //db.run(`INSERT INTO user_info_basic(first_name, middle_name, last_name, email, password)`)
-                console.log(email);
-
-                bcrypt.genSalt(10, (err, salt) => bcrypt.hash(password, salt, (err, hash) => {
-                    if(err) throw err;
-                    password = hash;
-
-                } ) );
-            }
-        });
-        */
+        }
 
     }
 
 });
 
-// Login
+
+
+//Handle login
 router.post('/login', (req, res, next) => {
     passport.authenticate('local', {
       successRedirect: '/dashboard',
@@ -138,32 +95,6 @@ router.post('/login', (req, res, next) => {
       failureFlash: true
     })(req, res, next);
   });
-
-// Dashboard
-// router.get('/dashboard', ensureAuthenticated, (req, res) =>
-//   res.render('dashboard', {
-//     user: req.user
-//   })
-// );
-
-
-//Create database tables
-// db.serialize(()=>{
-//     db.run("CREATE TABLE user_info_basic (first_name TEXT NOT NULL, middle_name TEXT, last_name TEXT NOT NULL, email TEXT NOT NULL PRIMARY KEY, password TEXT NOT NULL, phone_number TEXT, dob TEXT)");
-//     db.run("CREATE TABLE user_info_trading (balance REAL NOT NULL, email TEXT NOT NULL PRIMARY KEY)");
-// })
-//db.run("CREATE TABLE user_info_basic (first_name TEXT NOT NULL, middle_name TEXT, last_name TEXT NOT NULL, email TEXT NOT NULL PRIMARY KEY, password TEXT NOT NULL, phone_number TEXT, dob TEXT)");
-     
-
-//Close the database connection
-/*
-db.close((err=>{
-    if(err){
-        return console.error(err.message);
-    }
-    console.log('Disconnected from the cached SQlite database.');
-}))
-*/
 
 
 module.exports = router;

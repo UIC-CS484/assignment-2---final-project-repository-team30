@@ -11,6 +11,7 @@ router.get('/', function(req, res, next) {
     
 });
 
+
 // Dashboard
 // router.get('/dashboard', ensureAuthenticated, (req, res) =>
 //   res.render('dashboard', {
