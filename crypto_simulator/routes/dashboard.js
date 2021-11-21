@@ -16,9 +16,9 @@ router.get('/', function(req, res, next) {
     console.log("Here: %s",current_id);
     
     axios.get("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin&order=market_cap_desc&per_page=100&page=1&sparkline=false").then(function(response){
-        var object = response.data[0].current_price;
-        console.log(response.data);
-        res.render('dashboard', {userInfo});
+        let object = response.data[0].current_price;
+        console.log(object);
+        res.render('dashboard', {userInfo, object});
     }).catch(function(error){
         console.log(error);
     })
