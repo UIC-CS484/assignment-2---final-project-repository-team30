@@ -1,3 +1,4 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 <nav style="color: goldenrod;" class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,7 +19,7 @@
             <a class="nav-link" href="/dashboard/updateAccount">Update Email</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" style="color: tomato;" href="/dashboard/updateAccount">Delete Account</a>
+            <a class="nav-link" style="color: tomato;" href="/dashboard/deleteAccount">Delete Account</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
@@ -42,4 +43,5 @@
 <p class="lead mb-3">Welcome to your personal dashboard, <%- userInfo.fname %>! </p>
 <br>
 <p class="lead mb-3" style="color: goldenrod;">Current price of bitcoin:<span style="color: greenyellow;"> <%- object %> </span> </p>
+<canvas id="bar-chart" width="800" height="450"></canvas>
 

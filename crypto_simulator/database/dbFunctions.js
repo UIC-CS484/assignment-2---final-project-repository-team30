@@ -64,10 +64,7 @@ async function deleteUser(id){
 			{
 				reject(err);
 			}
-			else
-			{
-				resolve(console.log("User %s was deleted", params[0]));
-			}
+			resolve(console.log("User %s was deleted", params[0]));
 		});
 	});
 }
