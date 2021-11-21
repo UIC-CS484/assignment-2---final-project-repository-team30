@@ -15,10 +15,10 @@
             <a class="nav-link" href="/">Sign Out</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/">Update Email</a>
+            <a class="nav-link" href="/dashboard/updateAccount">Update Email</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Delete Account</a>
+            <a class="nav-link" style="color: tomato;" href="/dashboard/updateAccount">Delete Account</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
@@ -39,8 +39,4 @@
     </div>
   </nav>
 <h1 class="mt-4" style="color: goldenrod;">Dashboard</h1>
-<p class="lead mb-3">Welcome to your personal dashboard, <%- userInfo.fname %>.  </p>
-<br>
-<a href="/users/login" class="btn btn-secondary btn-block">Logout</a>
-<a href="/users/login" class="btn btn-secondary btn-block">Update Email</a>
-<a href="/users/login" class="btn btn-secondary btn-block">Delete Account</a>
+<p class="lead mb-3">Welcome to your personal dashboard!  </p>
