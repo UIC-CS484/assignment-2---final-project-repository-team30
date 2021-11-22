@@ -1,5 +1,5 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-<nav style="color: goldenrod;" class="navbar navbar-expand-lg navbar-dark bg-primary">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -42,6 +42,31 @@
 <h1 class="mt-4" style="color: goldenrod;">Dashboard</h1>
 <p class="lead mb-3">Welcome to your personal dashboard, <%- userInfo.fname %>! </p>
 <br>
-<p class="lead mb-3" style="color: goldenrod;">Current price of bitcoin:<span style="color: greenyellow;"> <%- object %> </span> </p>
-<canvas id="bar-chart" width="800" height="450"></canvas>
+<p class="lead mb-3" style="color: goldenrod;">Current price of bitcoin:<span style="color: greenyellow;"> <%- btcp %> </span> </p>
+<canvas id="bar-chart-horizontal" width="700" height="300"></canvas>
+<script>
+    new Chart(document.getElementById("bar-chart-horizontal"), {
+    type: 'horizontalBar',
+    data: {
+      labels: ["Bitcoin", "Ethereum", "Solana", "Cardano", "Ripple"],
+      datasets: [
+        {
+          label: "Market Capitalization ($usd)",
+          backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+          data: [`<%- btcm %>`,`<%- ethm %>`,`<%- solm %>`,`<%- adam %>`,`<%- xrpm %>`]
+        }
+      ]
+    },
+    options: {
+      legend: { display: false },
+      title: {
+        display: true,
+        text: 'Top Cryptocurrency Market Capitalizations'
+      }
+    }
+});
+</script>
+<br>
+<br>
+
 
