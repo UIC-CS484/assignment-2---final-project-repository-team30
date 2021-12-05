@@ -56,21 +56,6 @@ app.use(function(req, res, next) {
     next(createError(404));
   });
 
-// Connect flash
-// app.use(flash());
-
-// Global variables
-// app.use(function(req, res, next) {
-//   res.locals.success_msg = req.flash('success_msg');
-//   res.locals.error_msg = req.flash('error_msg');
-//   res.locals.error = req.flash('error');
-//   next();
-// });
-
-// app.use(flash());
-
-
-
 
 // error handler
 app.use(function(err, req, res, next) {
@@ -82,8 +67,6 @@ app.use(function(err, req, res, next) {
     res.status(err.status || 500);
     res.render('error');
 });
-
-
 
 
 //Set up port
