@@ -6,7 +6,7 @@
 <br>
 <br>
 
-## <u>**Local Useage**</u>
+# **Local Useage**
 
 #### **Launch in browser:**
 - #### In a terminal, navigate to the crypto_simulator directory from the root directory of the project.
@@ -22,13 +22,13 @@
 <br>
 <br>
 
-## <u>**Entity-Relation Diagram of Database**</u>
+# **Entity-Relation Diagram of Database**
 ![image info](./design_documents/erd.jpg)
 
 <br>
 <br>
 
-## <u>**Critical Development Tools**</u>
+# **Critical Development Tools**
 - #### Node.js
 - #### Passport.js
 - #### SQLite3
