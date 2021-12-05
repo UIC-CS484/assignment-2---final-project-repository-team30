@@ -1,8 +1,9 @@
-# **Cryptocurrency Trading Practice App**
+# **Cryptocurrency Trading Practice App** 
 #### Creator: Ronak Trivedi
 #### Github: https://github.com/ronak2
 
-#
+
+<br>
 <br>
 
 ## <u>**Local Useage**</u>
@@ -27,7 +28,6 @@
 <br>
 <br>
 
-##
 ## <u>**Critical Development Tools**</u>
 - #### Node.js
 - #### Passport.js
