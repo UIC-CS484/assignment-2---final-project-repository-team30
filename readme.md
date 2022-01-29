@@ -1,6 +1,6 @@
 # **Cryptocurrency Trading Practice App** 
-#### Creator: Ronak Trivedi
 #### Website URL: https://the-perfect-trader.herokuapp.com/
+#### Creator: Ronak Trivedi
 
 <br>
 <br>
