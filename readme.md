@@ -1,4 +1,4 @@
-# **Cryptocurrency Trading Practice App** 
+# **Cryptocurrency Trading Simulator App** 
 #### Website URL: https://the-perfect-trader.herokuapp.com/
 #### Creator: Ronak Trivedi
 
