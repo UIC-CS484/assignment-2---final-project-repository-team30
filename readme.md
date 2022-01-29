@@ -30,6 +30,12 @@ Many people who want to learn how to trade cryptocurrencies, but the risk of los
 <br>
 <br>
 
+# **Entity-Relation Diagram of Database**
+![image info](./design_documents/erd.jpg)
+
+<br>
+<br>
+
 # **Local Useage**
 #### **Launch in browser:**
 - #### In a terminal, navigate to the crypto_simulator directory from the root directory of the project.
@@ -45,12 +51,6 @@ Many people who want to learn how to trade cryptocurrencies, but the risk of los
 <br>
 <br>
 
-
-# **Entity-Relation Diagram of Database**
-![image info](./design_documents/erd.jpg)
-
-<br>
-<br>
 
 
 
