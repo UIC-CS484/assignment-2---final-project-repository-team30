@@ -45,22 +45,6 @@ Many people who want to learn how to trade cryptocurrencies, but the risk of los
 <br>
 <br>
 
-# **API Interaction**
-    axios.get("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin%2C%20ethereum%2C%20cardano%2C%20ripple%2C%20solana&order=market_cap_desc&per_page=100&page=1&sparkline=false").then(function(response)
-    {
-        let btcp = response.data[0].current_price;
-        let btcm = response.data[0].market_cap;
-        let ethp = response.data[1].current_price;
-        let ethm = response.data[1].market_cap;
-        let solp = response.data[2].current_price;
-        let solm = response.data[2].market_cap;
-        let adap = response.data[3].current_price;
-        let adam = response.data[3].market_cap;
-        let xrpp = response.data[4].current_price;
-        let xrpm = response.data[4].market_cap;
-    }
-<br>
-<br>
 
 # **Entity-Relation Diagram of Database**
 ![image info](./design_documents/erd.jpg)
