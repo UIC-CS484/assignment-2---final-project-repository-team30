@@ -2,7 +2,6 @@
 #### Creator: Ronak Trivedi
 #### Website URL: https://the-perfect-trader.herokuapp.com/
 
-
 <br>
 <br>
 
